@@ -30,3 +30,40 @@ vi /usr/local/redis/redis.conf
 bind 127.0.0.1	限制redis只能本地访问，#注释后所有Ip都可以访问
 
 docker run -d --name redis -p 6379:6379 -v /usr/local/redis/redis.conf:/etc/redis/redis.conf redis redis-server /etc/redis/redis.conf --appendonly yes --requirepass 'test'
+
+#rabbitmq
+RabbitMQ安装
+下载rabbitmq3.7.15的docker镜像：
+docker pull rabbitmq:3.7.15
+Copy to clipboardErrorCopied
+使用如下命令启动RabbitMQ服务：
+docker run -p 5672:5672 -p 15672:15672 --name rabbitmq \
+-d rabbitmq:3.7.15
+Copy to clipboardErrorCopied
+进入容器并开启管理功能：
+docker exec -it rabbitmq /bin/bash
+rabbitmq-plugins enable rabbitmq_management
+Copy to clipboardErrorCopied
+
+
+开启防火墙：
+firewall-cmd --zone=public --add-port=15672/tcp --permanent
+firewall-cmd --reload
+Copy to clipboardErrorCopied
+访问地址查看是否安装成功：http://192.168.3.101:15672
+
+
+输入账号密码并登录：guest guest
+
+创建帐号并设置其角色为管理员：mall mall
+
+
+
+创建一个新的虚拟host为：/mall
+
+
+点击mall用户进入用户配置页面
+
+
+给mall用户配置该虚拟host的权限
+
