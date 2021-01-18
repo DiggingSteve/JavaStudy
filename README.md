@@ -1,6 +1,6 @@
 #以下安装都将在docker 进行
 # mysql 安装
-~ docker pull mysql:5.7
+~ docker pull mysql:5.7 \n
 sudo docker run -d -p 3306:3306 --privileged=true -v /docker/mysql/conf/my.cnf:/etc/my.cnf -v /docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
 参数说明:
 
