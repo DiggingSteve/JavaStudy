@@ -96,3 +96,88 @@ firewall-cmd --zone=public --add-port=9200/tcp --permanent
 firewall-cmd --reload
 
 访问会返回版本信息：http://192.168.3.101:9200
+
+#idea 添加注释
+Idea 添加注释：类注释、方法注释
+类注释
+方法注释
+类注释
+File–Setting–Editor–File and Code Templates–Class:
+注释模板：
+/**
+ *
+ *
+ *@description: 
+ *@author: Andy
+ *@time: ${DATE} ${TIME}
+ * 
+ */
+1
+2
+3
+4
+5
+6
+7
+8
+操作截图：
+
+效果：
+
+方法注释
+为了获取参数信息，我们需要使用 “ Live Templates” 。
+
+创建 Live Templates 分组
+
+File–Setting–Live Templates。
+
+
+创建 Template
+
+我们上一步创建了 Andy 分组，现在我们将在 Andy 分组中创建 Template。
+
+设置模板内容
+模板缩写（Abbreviation）：例如，我们可以把它设置为 “a”。
+模板描述（Description）：例如，我们可以设置为 “方法注释”。
+模板内容：
+/**
+ *
+ *
+ * @description: 
+$params$
+ * @return: $return$
+ * @author: Andy
+ * @time: $date$ $time$
+ */    
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+定义模板内容中引用的变量
+我们上一步的截图中，点击 Edit variables 按钮可以弹出变量设置窗口。
+这里，我们把参数变量 params 设置为一个自定义函数 groovyScript() 。groovyScript 函数调用 Idea 的 methodParameters() 函数获得参数数组，并进行格式化。
+params 的值（即 groovyScript 函数）：
+groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s]', '').split(',').toList(); for(i = 0; i < params.size(); i++) {result+=' * @param ' + params[i] + ((i < params.size() - 1) ? '\\n' : '')}; return result", methodParameters())
+1
+其他变量的值，直接使用 Idea 的函数进行赋值。
+date → date()
+time → time()
+return → methodReturnType()
+
+定义模板的使用范围
+
+
+效果：
+
+
+
+————————————————
+版权声明：本文为CSDN博主「Andy_Li_」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/liqing0013/article/details/84104419
+
